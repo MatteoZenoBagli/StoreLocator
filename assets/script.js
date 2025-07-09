@@ -78,8 +78,7 @@ function showError(message) {
 function initializeApp() {
   loadProducts();
   loadStores();
-  // initMap();
-  // showAllStores();
+  showAllStores();
   // updateStats();
 }
 
@@ -108,7 +107,7 @@ function updateInfoPanelForStore(storeId) {
 
   elements.infoPanel.innerHTML = [
     `<strong>${store.name}</strong> - ${store.city} - ${store.address} - ${store.type}`,
-    `<strong>Coordinates:</strong> lat: ${store.lat}, lng: ${store.lng}`,
+    `<strong>Coordinates:</strong> lat: ${store.position.lat}, lng: ${store.position.lng}`,
     `Products varieties: ${productsVarieties.length} products`,
     `Total products stock: ${totalProductsStockInStoreCount} pieces`,
   ].join('<br>');
@@ -118,10 +117,16 @@ function initMap() {
   const config = {
     center: BolognaPiazzaMaggiore,
     zoom: 13,
+    mapId: 'map'
   };
 
   map = new google.maps.Map(elements.map, config);
   infoWindow = new google.maps.InfoWindow();
+}
+
+function showAllStores() {
+  for (const store of stores)
+    addCustomMarker(store.position, store.name, store.type, '#331342');
 }
 
 function loadElement(
@@ -200,7 +205,7 @@ function loadStores() {
         <div><strong>${store.name}</strong></div>
         <div style="font-size: 11px; color: #666;">
           ${store.city} - ${store.address} - ${store.type}
-          ${store.lat}, ${store.lng}
+          ${store.position.lat}, ${store.position.lng}
           ${!isAvailable ? " (Not available)" : ""}
         </div>
       </div>
@@ -255,7 +260,7 @@ function createCustomMarker(color) {
 }
 
 function addCustomMarker(position, title, description, color) {
-  const marker = new google.maps.Marker({
+  const marker = new google.maps.marker.AdvancedMarkerElement({
     position: position,
     map: map,
     title: title,
@@ -296,7 +301,7 @@ window.onload = function () {
   loadAllData().then(() => {
     const API_KEY = "TODO INSERT HERE YOUR API KEY";
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initMap`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initMap&libraries=marker`;
     script.async = true;
     script.defer = true;
     document.head.appendChild(script);
