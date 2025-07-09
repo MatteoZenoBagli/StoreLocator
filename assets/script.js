@@ -78,8 +78,8 @@ function showError(message) {
 function initializeApp() {
   loadProducts();
   loadStores();
-  showAllStores();
-  // updateStats();
+  // showAllStores();
+  updateStats();
 }
 
 function updateInfoPanelForProduct(productId) {
@@ -93,31 +93,36 @@ function updateInfoPanelForProduct(productId) {
   elements.infoPanel.innerHTML = [
     `<strong>${product.name}</strong> - ${product.brand} - ${product.category} - ${product.price}`,
     `<strong>SKU:</strong> ${product.sku}`,
-    `Stock available in ${storesWithProduct.length} stores on ${stores.length} (${storesWithProduct.length / stores.length * 100}%)`,
+    `Stock available in ${storesWithProduct.length} stores on ${
+      stores.length
+    } (${(storesWithProduct.length / stores.length) * 100}%)`,
     `Total stock: ${totalQuantity} pieces`,
-  ].join('<br>');
+  ].join("<br>");
 }
 
 function updateInfoPanelForStore(storeId) {
   const store = stores.find((s) => s.id === storeId);
   const productsVarieties = productsVarietiesInStore(storeId);
-  const totalProductsStockInStoreCount = 0 !== Object.values(productsVarieties).length
-    ? Object.values(productsVarieties).reduce((a, b) => parseInt(a) + parseInt(b))
-    : 0;
+  const totalProductsStockInStoreCount =
+    0 !== Object.values(productsVarieties).length
+      ? Object.values(productsVarieties).reduce(
+          (a, b) => parseInt(a) + parseInt(b)
+        )
+      : 0;
 
   elements.infoPanel.innerHTML = [
     `<strong>${store.name}</strong> - ${store.city} - ${store.address} - ${store.type}`,
     `<strong>Coordinates:</strong> lat: ${store.position.lat}, lng: ${store.position.lng}`,
     `Products varieties: ${productsVarieties.length} products`,
     `Total products stock: ${totalProductsStockInStoreCount} pieces`,
-  ].join('<br>');
+  ].join("<br>");
 }
 
 function initMap() {
   const config = {
     center: BolognaPiazzaMaggiore,
     zoom: 13,
-    mapId: 'map'
+    mapId: "map",
   };
 
   map = new google.maps.Map(elements.map, config);
@@ -126,7 +131,53 @@ function initMap() {
 
 function showAllStores() {
   for (const store of stores)
-    addCustomMarker(store.position, store.name, store.type, '#331342');
+    addCustomMarker(store.position, store.name, store.type, "#331342");
+}
+
+function updateStats() {
+  const storesWithProducts = stores.filter(
+    (store) =>
+      inventory[store.id] && Object.keys(inventory[store.id]).length > 0
+  ).length;
+
+  const emptyStores = stores.length - storesWithProducts;
+
+  const productsAvailable = products.filter(
+    (product) =>
+      product.available !== false &&
+      stores.some(
+        (store) => inventory[store.id] && inventory[store.id][product.id]
+      )
+  ).length;
+
+  const unavailableProducts = products.filter(
+    (product) => product.available === false
+  ).length;
+
+  const totalProducts = Object.values(inventory).reduce(
+    (total, storeInventory) =>
+      total + Object.values(storeInventory).reduce((sum, qty) => sum + qty, 0),
+    0
+  );
+
+  document.getElementById("stats").innerHTML = `
+    <h2>Stats</h2>
+    <div>
+      <strong>Stores:</strong> ${stores.length} total
+      <ul>
+        <li class="green">With products: ${storesWithProducts}</li>
+        <li class="red">Empty: ${emptyStores}</li>
+      </ul>
+    </div>
+    <div>
+      <strong>Products:</strong> ${products.length} total
+      <ul>
+        <li class="green">Available: ${productsAvailable}</li>
+        <li class="red">Not available: ${unavailableProducts}</li>
+      </ul>
+    </div>
+    <div><strong>Total stock:</strong> ${totalProducts} pieces</div>
+  `;
 }
 
 function loadElement(
