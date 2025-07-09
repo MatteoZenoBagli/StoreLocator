@@ -9,7 +9,7 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=development
-    command: sh -c "npm i && npx http-server -p 3000 -c-1"
+    command: sh -c "npm i && npx nodemon index.js"
     networks:
       - app-network
 
