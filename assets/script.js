@@ -118,22 +118,38 @@ function updateInfoPanelForStore(storeId) {
   ].join("<br>");
 }
 
-function initMap() {
+async function initMap() {
+  // Request needed libraries.
+  const { Map, InfoWindow } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
+
   const config = {
     center: BolognaPiazzaMaggiore,
     zoom: 13,
     mapId: "map",
   };
+  map = new Map(elements.map, config);
+  infoWindow = new InfoWindow();
 
-  map = new google.maps.Map(elements.map, config);
-  infoWindow = new google.maps.InfoWindow();
-}
+  for (const store of stores) {
+    const pin = new PinElement();
+    const marker = new AdvancedMarkerElement({
+      position: store.position,
+      map,
+      title: store.name,
+      content: pin.element,
+      gmpClickable: true
+    });
 
-function showAllStores() {
-  console.log('TODO');
-  return
-  for (const store of stores)
-    addCustomMarker(store.position, store.name, store.type, "#331342");
+    marker.addListener('click', ({ domEvent, latLng }) => {
+      const { target } = domEvent;
+      infoWindow.close();
+      infoWindow.setContent(marker.title);
+      infoWindow.open(marker.map, marker);
+    });
+
+    markers.push(marker);
+  }
 }
 
 function showAllStores() {
@@ -311,44 +327,6 @@ function selectStore(storeId) {
 function showStoresForProduct(productId) {
   clearMarkers();
   // TODO
-}
-
-function createCustomMarker(color) {
-  return {
-    path: google.maps.SymbolPath.CIRCLE,
-    scale: 10,
-    fillColor: color,
-    fillOpacity: 1,
-    strokeColor: "#ffffff",
-    strokeWeight: 2,
-  };
-}
-
-function addCustomMarker(position, title, description, color) {
-  const marker = new google.maps.marker.AdvancedMarkerElement({
-    position: position,
-    map: map,
-    title: title,
-    icon: createCustomMarker(color),
-    animation: google.maps.Animation.DROP,
-  });
-
-  marker.addListener("click", function () {
-    infoWindow.setContent(`
-      <div style="padding: 10px;">
-          <h3 style="margin: 0 0 10px 0; color: ${color};">${title}</h3>
-          <p style="margin: 0;">${description}</p>
-          <small style="color: #666;">
-            Lat: ${position.lat().toFixed(4)},
-            Lng: ${position.lng().toFixed(4)}
-          </small>
-      </div>
-    `);
-    infoWindow.open(map, marker);
-  });
-
-  markers.push(marker);
-  return marker;
 }
 
 function clearMarkers() {
