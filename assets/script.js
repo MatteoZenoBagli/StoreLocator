@@ -6,8 +6,47 @@ let markers = [];
 let selectedProductId = null;
 let selectedStoreId = null;
 
+const elements = {
+  infoPanel: null,
+  mainContent: null,
+  loadingSection: null,
+  errorSection: null,
+  errorMessage: null,
+  productItems: null,
+  storeItems: null,
+  map: null,
+};
+
 async function loadAllData() {
   try {
+    console.log("Finding elements...");
+
+    elements.infoPanel = document.getElementById("infoPanel");
+    if (!elements.infoPanel) throw "infoPanel not provided";
+
+    elements.mainContent = document.getElementById("mainContent");
+    if (!elements.mainContent) throw "mainContent not provided";
+
+    elements.loadingSection = document.getElementById("loadingSection");
+    if (!elements.loadingSection) throw "loadingSection not provided";
+
+    elements.errorSection = document.getElementById("errorSection");
+    if (!elements.errorSection) throw "errorSection not provided";
+
+    elements.errorMessage = document.getElementById("errorMessage");
+    if (!elements.errorMessage) throw "errorMessage not provided";
+
+    elements.productItems = document.querySelectorAll(".product-item");
+    if (!elements.productItems) throw "productItems not provided";
+
+    elements.storeItems = document.querySelectorAll(".store-item");
+    if (!elements.storeItems) throw "storeItems not provided";
+
+    elements.map = document.getElementById("map");
+    if (!elements.map) throw "Map not provided";
+
+    console.log("Successfully found elements:", elements);
+
     console.log("Loading data...");
 
     if (!stores) throw "Stores not provided";
@@ -20,8 +59,8 @@ async function loadAllData() {
       inventoryKeys: Object.keys(inventory).length,
     });
 
-    document.getElementById("loadingSection").style.display = "none";
-    document.getElementById("mainContent").style.display = "block";
+    elements.loadingSection.style.display = "none";
+    elements.mainContent.style.display = "block";
 
     initializeApp();
   } catch (error) {
@@ -31,9 +70,9 @@ async function loadAllData() {
 }
 
 function showError(message) {
-  document.getElementById("loadingSection").style.display = "none";
-  document.getElementById("errorSection").style.display = "block";
-  document.getElementById("errorMessage").textContent = message;
+  elements.loadingSection.style.display = "none";
+  elements.errorSection.style.display = "block";
+  elements.errorMessage.textContent = message;
 }
 
 function initializeApp() {
@@ -46,16 +85,16 @@ function initializeApp() {
 
 function updateInfoPanelForProduct(productId) {
   const product = products.find((p) => p.id === productId);
-  const storesWithProduct = isProductInStore(product);
+  const storesWithProduct = storesWithProductStock(product);
   const totalQuantity = storesWithProduct.reduce(
     (total, store) => total + (inventory[store.id][productId] || 0),
     0
   );
 
-  document.getElementById("infoPanel").innerHTML = `
+  elements.infoPanel.innerHTML = `
     <strong>${product.name}</strong> - ${product.brand} - ${product.category} - ${product.price}<br>
     <strong>SKU:</strong> ${product.sku}<br>
-    Stock available in <strong>${storesWithProduct.length}</strong> stores on ${stores.length}<br>
+    Stock available in <strong>${storesWithProduct.length}</strong> stores on ${stores.length} (${storesWithProduct.length / stores.length * 100}%)<br>
     Total stock: <strong>${totalQuantity}</strong> pieces
   `;
 }
@@ -64,20 +103,17 @@ function updateInfoPanelForStore(storeId) {
   const store = store.find((s) => s.id === storeId);
   // TODO Make the same for store as updateInfoPanelForProduct for products
 
-  document.getElementById("infoPanel").innerHTML = `
+  elements.infoPanel.innerHTML = `
   `;
 }
 
 function initMap() {
-  const mapEl = document.getElementById("map");
-  if (!mapEl) throw "Map not provided";
-
   const config = {
     center: BolognaPiazzaMaggiore,
     zoom: 13,
   };
 
-  map = new google.maps.Map(mapEl, config);
+  map = new google.maps.Map(elements.map, config);
   infoWindow = new google.maps.InfoWindow();
 }
 
@@ -114,10 +150,14 @@ function loadElement(
   }
 }
 
-function isProductInStore(product) {
+function storesWithProductStock(product) {
   return stores.filter(
     (store) => inventory[store.id] && inventory[store.id][product.id]
-  ).length;
+  );
+}
+
+function isProductInStore(product) {
+  return 0 < storesWithProductStock(product).length;
 }
 
 function loadProducts() {
@@ -125,7 +165,7 @@ function loadProducts() {
     "product",
     products,
     selectProduct,
-    isProductInStore,
+    storesWithProductStock,
     (product, isAvailable, storesWithProduct) =>
       `
       <div>
@@ -136,7 +176,7 @@ function loadProducts() {
         </div>
       </div>
       <div style="font-size: 12px; color: #666;">
-        ${isAvailable ? `${storesWithProduct} stores` : "N/A"}
+        ${isAvailable ? `${storesWithProduct.length} stores` : "N/A"}
       </div>
     `
   );
@@ -147,7 +187,7 @@ function loadStores() {
     "store",
     stores,
     selectStore,
-    (store) => Object.entries(inventory[store.id]).length,
+    (store) => Object.entries(inventory[store.id]),
     (store, isAvailable, storesWithProduct) => `
       <div>
         <div><strong>${store.name}</strong></div>
@@ -158,7 +198,7 @@ function loadStores() {
         </div>
       </div>
       <div style="font-size: 12px; color: #666;">
-        ${isAvailable ? `${storesWithProduct} products` : "N/A"}
+        ${isAvailable ? `${storesWithProduct.length} products` : "N/A"}
       </div>
     `
   );
@@ -167,10 +207,7 @@ function loadStores() {
 function selectProduct(productId) {
   selectedProductId = productId;
 
-  const productItems = document.querySelectorAll(".product-item");
-  if (!productItems) return;
-
-  for (const productItem of productItems) {
+  for (const productItem of elements.productItems) {
     productItem.classList.remove("selected");
     if (productId === productItem.id) productItem.classList.add("selected");
   }
@@ -182,10 +219,7 @@ function selectProduct(productId) {
 function selectStore(storeId) {
   selectedStoreId = storeId;
 
-  const storeItems = document.querySelectorAll(".store-item");
-  if (!storeItems) return;
-
-  for (const storeItem of storeItems) {
+  for (const storeItem of elements.storeItems) {
     storeItem.classList.remove("selected");
     if (storeId === storeItem.id) storeItem.classList.add("selected");
   }
