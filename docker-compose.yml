@@ -1,0 +1,18 @@
+services:
+  node-app:
+    image: node:alpine
+    container_name: google-maps-store-locator
+    working_dir: /usr/src/app
+    volumes:
+      - ./app:/usr/src/app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    command: sh -c "npm i && npx http-server -p 3000 -c-1"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
