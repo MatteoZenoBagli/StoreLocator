@@ -1,5 +1,12 @@
 const BolognaPiazzaMaggiore = { lat: 44.4939, lng: 11.3426 };
 const CentralItaly = { lat: 41.9028, lng: 12.4964 };
+const ItalyBounds = {
+  north: 47.09,
+  south: 36.62,
+  west: 6.63,
+  east: 18.78,
+};
+const Rome = { lat: 41.9028, lng: 12.4964 };
 
 let map;
 let markers = [];
@@ -134,7 +141,11 @@ async function initMap() {
 
   const config = {
     center: BolognaPiazzaMaggiore,
-    zoom: 13,
+    restriction: {
+      latLngBounds: ItalyBounds,
+      strictBounds: false,
+    },
+    zoom: 6,
     mapId: "map",
     disableDefaultUI: true,
   };
