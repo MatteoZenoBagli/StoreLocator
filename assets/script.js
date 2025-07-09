@@ -91,20 +91,27 @@ function updateInfoPanelForProduct(productId) {
     0
   );
 
-  elements.infoPanel.innerHTML = `
-    <strong>${product.name}</strong> - ${product.brand} - ${product.category} - ${product.price}<br>
-    <strong>SKU:</strong> ${product.sku}<br>
-    Stock available in <strong>${storesWithProduct.length}</strong> stores on ${stores.length} (${storesWithProduct.length / stores.length * 100}%)<br>
-    Total stock: <strong>${totalQuantity}</strong> pieces
-  `;
+  elements.infoPanel.innerHTML = [
+    `<strong>${product.name}</strong> - ${product.brand} - ${product.category} - ${product.price}`,
+    `<strong>SKU:</strong> ${product.sku}`,
+    `Stock available in ${storesWithProduct.length} stores on ${stores.length} (${storesWithProduct.length / stores.length * 100}%)`,
+    `Total stock: ${totalQuantity} pieces`,
+  ].join('<br>');
 }
 
 function updateInfoPanelForStore(storeId) {
-  const store = store.find((s) => s.id === storeId);
-  // TODO Make the same for store as updateInfoPanelForProduct for products
+  const store = stores.find((s) => s.id === storeId);
+  const productsVarieties = productsVarietiesInStore(storeId);
+  const totalProductsStockInStoreCount = 0 !== Object.values(productsVarieties).length
+    ? Object.values(productsVarieties).reduce((a, b) => parseInt(a) + parseInt(b))
+    : 0;
 
-  elements.infoPanel.innerHTML = `
-  `;
+  elements.infoPanel.innerHTML = [
+    `<strong>${store.name}</strong> - ${store.city} - ${store.address} - ${store.type}`,
+    `<strong>Coordinates:</strong> lat: ${store.lat}, lng: ${store.lng}`,
+    `Products varieties: ${productsVarieties.length} products`,
+    `Total products stock: ${totalProductsStockInStoreCount} pieces`,
+  ].join('<br>');
 }
 
 function initMap() {
@@ -187,7 +194,7 @@ function loadStores() {
     "store",
     stores,
     selectStore,
-    (store) => Object.entries(inventory[store.id]),
+    (store) => productsVarietiesInStore(store.id),
     (store, isAvailable, storesWithProduct) => `
       <div>
         <div><strong>${store.name}</strong></div>
@@ -202,6 +209,10 @@ function loadStores() {
       </div>
     `
   );
+}
+
+function productsVarietiesInStore(storeId) {
+  return Object.entries(inventory[storeId]);
 }
 
 function selectProduct(productId) {
@@ -224,7 +235,6 @@ function selectStore(storeId) {
     if (storeId === storeItem.id) storeItem.classList.add("selected");
   }
 
-  showStoresForProduct(storeId);
   updateInfoPanelForStore(storeId);
 }
 
