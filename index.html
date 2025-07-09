@@ -15,7 +15,7 @@
       </div>
 
       <div id="errorSection" class="error" style="display: none">
-        <h3>Error loading data</h3>
+        <h2>Error loading data</h2>
         <p id="errorMessage"></p>
         <p><strong>Ensure to have correct JSON files:</strong></p>
         <ul>
@@ -27,54 +27,58 @@
 
       <div id="mainContent" style="display: none">
         <div class="dashboard">
-          <div class="sidebar">
-            <h3>Products</h3>
-            <div class="product-list" id="productList">
-              <!-- Dynamically loaded products -->
-            </div>
-
-            <h3>Stores</h3>
-            <div class="store-list" id="storeList">
-              <!-- Dynamically loaded stores -->
-            </div>
-
-            <div class="controls">
-              <button onclick="centerOnBologna()">Center on Bologna</button>
-              <button onclick="showAllStores()">Show all stores</button>
-              <button onclick="showStoresWithProducts()">
-                Show stores with products
-              </button>
-              <button onclick="showEmptyStores()">Show empty stores</button>
-            </div>
-
-            <div class="legend">
-              <div class="legend-item">
-                <div class="legend-color" style="background: #4caf50"></div>
-                <span>With products</span>
-              </div>
-              <div class="legend-item">
-                <div class="legend-color" style="background: #ff9800"></div>
-                <span>Without products</span>
-              </div>
-              <div class="legend-item">
-                <div class="legend-color" style="background: #f44336"></div>
-                <span>Empty</span>
+          <div class="lists">
+            <div class="list">
+              <h2>Products</h2>
+              <div class="product-list" id="productList">
+                <!-- Dynamically loaded products -->
               </div>
             </div>
 
-            <div class="stats" id="stats">
-              <!-- Stats -->
+            <div class="list">
+              <h2>Stores</h2>
+              <div class="store-list" id="storeList">
+                <!-- Dynamically loaded stores -->
+              </div>
             </div>
           </div>
 
-          <div class="map-container">
-            <div id="map"></div>
+          <div class="controls">
+            <button onclick="centerOnBologna()">Center on Bologna</button>
+            <button onclick="showAllStores()">Show all stores</button>
+            <button onclick="showStoresWithProducts()">
+              Show stores with products
+            </button>
+            <button onclick="showEmptyStores()">Show empty stores</button>
           </div>
 
-          <div class="info-panel" id="infoPanel">
-            Select a product to view stock in stores or select store to view
-            product stock.
+          <div class="legend">
+            <button class="legend-item">
+              <div class="legend-color legend-color--with-products"></div>
+              <span>With products</span>
+            </button>
+            <button class="legend-item">
+              <div class="legend-color legend-color--without-products"></div>
+              <span>Without products</span>
+            </button>
+            <button class="legend-item">
+              <div class="legend-color legend-color--empty"></div>
+              <span>Empty</span>
+            </button>
           </div>
+
+          <div class="stats" id="stats">
+            <!-- Stats -->
+          </div>
+        </div>
+
+        <div class="map-container">
+          <div id="map"></div>
+        </div>
+
+        <div class="info-panel" id="infoPanel">
+          Select a product to view stock in stores or select store to view
+          product stock.
         </div>
       </div>
     </div>
