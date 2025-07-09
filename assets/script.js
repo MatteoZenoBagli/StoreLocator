@@ -130,8 +130,22 @@ function initMap() {
 }
 
 function showAllStores() {
+  console.log('TODO');
+  return
   for (const store of stores)
     addCustomMarker(store.position, store.name, store.type, "#331342");
+}
+
+function showAllStores() {
+  console.log('TODO');
+}
+
+function showStoresWithProducts() {
+  console.log('TODO');
+}
+
+function showEmptyStores() {
+  console.log('TODO');
 }
 
 function updateStats() {
