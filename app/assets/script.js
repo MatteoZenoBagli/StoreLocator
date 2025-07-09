@@ -136,6 +136,7 @@ async function initMap() {
     center: BolognaPiazzaMaggiore,
     zoom: 13,
     mapId: "map",
+    disableDefaultUI: true,
   };
   map = new Map(elements.map, config);
   infoWindow = new InfoWindow();
