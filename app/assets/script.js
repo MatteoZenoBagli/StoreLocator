@@ -49,9 +49,18 @@ async function loadAllData() {
 
     console.log("Loading data...");
 
-    if (!stores) throw "Stores not provided";
-    if (!products) throw "Products not provided";
-    if (!inventory) throw "Inventory not provided";
+    const response = await fetch('/api/data');
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+    const data = await response.json();
+
+    if (!data.stores) throw "Stores not provided";
+    if (!data.products) throw "Products not provided";
+    if (!data.inventory) throw "Inventory not provided";
+
+    stores = data.stores
+    products = data.products
+    inventory = data.inventory
 
     console.log("Successfully loaded data:", {
       stores: stores.length,

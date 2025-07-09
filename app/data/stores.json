@@ -1,0 +1,602 @@
+[
+  {
+    "id": 1,
+    "name": "Farmacia Centrale Beauty",
+    "city": "Roma",
+    "position": {
+      "lat": 41.9028,
+      "lng": 12.4964
+    },
+    "address": "Via del Corso 123",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 2,
+    "name": "Profumeria Trastevere",
+    "city": "Roma",
+    "position": {
+      "lat": 41.8919,
+      "lng": 12.4692
+    },
+    "address": "Via Trastevere 45",
+    "type": "profumeria",
+    "available": true
+  },
+  {
+    "id": 3,
+    "name": "Cosmesi Prati",
+    "city": "Roma",
+    "position": {
+      "lat": 41.9076,
+      "lng": 12.4555
+    },
+    "address": "Via Cola di Rienzo 67",
+    "type": "cosmetica",
+    "available": true
+  },
+  {
+    "id": 4,
+    "name": "Farmacia Milano Beauty Hub",
+    "city": "Milano",
+    "position": {
+      "lat": 45.4642,
+      "lng": 9.19
+    },
+    "address": "Corso Buenos Aires 234",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 5,
+    "name": "Profumeria Navigli",
+    "city": "Milano",
+    "position": {
+      "lat": 45.4476,
+      "lng": 9.1754
+    },
+    "address": "Via Navigli 12",
+    "type": "profumeria",
+    "available": true
+  },
+  {
+    "id": 6,
+    "name": "Brera Beauty Studio",
+    "city": "Milano",
+    "position": {
+      "lat": 45.4719,
+      "lng": 9.1896
+    },
+    "address": "Via Brera 89",
+    "type": "beauty_center",
+    "available": true
+  },
+  {
+    "id": 7,
+    "name": "Farmacia Toledo",
+    "city": "Napoli",
+    "position": {
+      "lat": 40.8518,
+      "lng": 14.2681
+    },
+    "address": "Via Toledo 156",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 8,
+    "name": "Profumeria Vomero",
+    "city": "Napoli",
+    "position": {
+      "lat": 40.8359,
+      "lng": 14.2394
+    },
+    "address": "Via Scarlatti 78",
+    "type": "profumeria",
+    "available": true
+  },
+  {
+    "id": 9,
+    "name": "Farmacia Torino Centro",
+    "city": "Torino",
+    "position": {
+      "lat": 45.0703,
+      "lng": 7.6869
+    },
+    "address": "Via Roma 234",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 10,
+    "name": "Beauty Point Porta Nuova",
+    "city": "Torino",
+    "position": {
+      "lat": 45.0633,
+      "lng": 7.6794
+    },
+    "address": "Corso Vittorio 45",
+    "type": "beauty_center",
+    "available": true
+  },
+  {
+    "id": 11,
+    "name": "Farmacia Maqueda",
+    "city": "Palermo",
+    "position": {
+      "lat": 38.1157,
+      "lng": 13.3615
+    },
+    "address": "Via Maqueda 123",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 12,
+    "name": "Profumeria Mondello",
+    "city": "Palermo",
+    "position": {
+      "lat": 38.1967,
+      "lng": 13.3261
+    },
+    "address": "Via Mondello 67",
+    "type": "profumeria",
+    "available": true
+  },
+  {
+    "id": 13,
+    "name": "Farmacia del Porto",
+    "city": "Genova",
+    "position": {
+      "lat": 44.4056,
+      "lng": 8.9463
+    },
+    "address": "Via del Porto 89",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 14,
+    "name": "Cosmesi Spianata",
+    "city": "Genova",
+    "position": {
+      "lat": 44.4264,
+      "lng": 8.9336
+    },
+    "address": "Spianata Castelletto 12",
+    "type": "cosmetica",
+    "available": true
+  },
+  {
+    "id": 15,
+    "name": "Farmacia Indipendenza",
+    "city": "Bologna",
+    "position": {
+      "lat": 44.4949,
+      "lng": 11.3426
+    },
+    "address": "Via Indipendenza 234",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 16,
+    "name": "Profumeria Universitaria",
+    "city": "Bologna",
+    "position": {
+      "lat": 44.4968,
+      "lng": 11.3464
+    },
+    "address": "Via Zamboni 45",
+    "type": "profumeria",
+    "available": true
+  },
+  {
+    "id": 17,
+    "name": "Beauty Art Firenze",
+    "city": "Firenze",
+    "position": {
+      "lat": 43.7696,
+      "lng": 11.2558
+    },
+    "address": "Via dei Calzaiuoli 67",
+    "type": "beauty_center",
+    "available": true
+  },
+  {
+    "id": 18,
+    "name": "Farmacia Oltrarno",
+    "city": "Firenze",
+    "position": {
+      "lat": 43.7648,
+      "lng": 11.2482
+    },
+    "address": "Via Santo Spirito 89",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 19,
+    "name": "Profumeria Sparano",
+    "city": "Bari",
+    "position": {
+      "lat": 41.1171,
+      "lng": 16.8719
+    },
+    "address": "Via Sparano 123",
+    "type": "profumeria",
+    "available": true
+  },
+  {
+    "id": 20,
+    "name": "Farmacia Muraglia",
+    "city": "Bari",
+    "position": {
+      "lat": 41.1085,
+      "lng": 16.8776
+    },
+    "address": "Via Muraglia 45",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 21,
+    "name": "Cosmesi Etnea",
+    "city": "Catania",
+    "position": {
+      "lat": 37.5079,
+      "lng": 15.083
+    },
+    "address": "Via Etnea 234",
+    "type": "cosmetica",
+    "available": true
+  },
+  {
+    "id": 22,
+    "name": "Profumeria Bellini",
+    "city": "Catania",
+    "position": {
+      "lat": 37.5021,
+      "lng": 15.0877
+    },
+    "address": "Via Bellini 67",
+    "type": "profumeria",
+    "available": true
+  },
+  {
+    "id": 23,
+    "name": "Farmacia Venezia",
+    "city": "Venezia",
+    "position": {
+      "lat": 45.4408,
+      "lng": 12.3155
+    },
+    "address": "Calle Larga 89",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 24,
+    "name": "Beauty Hub Mestre",
+    "city": "Venezia",
+    "position": {
+      "lat": 45.4953,
+      "lng": 12.2335
+    },
+    "address": "Via Piave 123",
+    "type": "beauty_center",
+    "available": true
+  },
+  {
+    "id": 25,
+    "name": "Profumeria Arena",
+    "city": "Verona",
+    "position": {
+      "lat": 45.4384,
+      "lng": 10.9916
+    },
+    "address": "Via Mazzini 45",
+    "type": "profumeria",
+    "available": true
+  },
+  {
+    "id": 26,
+    "name": "Farmacia Porta Nuova",
+    "city": "Verona",
+    "position": {
+      "lat": 45.4299,
+      "lng": 10.9832
+    },
+    "address": "Corso Porta Nuova 67",
+    "type": "farmacia",
+    "available": false
+  },
+  {
+    "id": 27,
+    "name": "Cosmesi Stretto",
+    "city": "Messina",
+    "position": {
+      "lat": 38.1938,
+      "lng": 15.554
+    },
+    "address": "Via Garibaldi 89",
+    "type": "cosmetica",
+    "available": true
+  },
+  {
+    "id": 28,
+    "name": "Farmacia Universitaria",
+    "city": "Padova",
+    "position": {
+      "lat": 45.4064,
+      "lng": 11.8768
+    },
+    "address": "Via del Santo 123",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 29,
+    "name": "Profumeria Prato della Valle",
+    "city": "Padova",
+    "position": {
+      "lat": 45.4014,
+      "lng": 11.8732
+    },
+    "address": "Prato della Valle 45",
+    "type": "profumeria",
+    "available": true
+  },
+  {
+    "id": 30,
+    "name": "Farmacia Porto Trieste",
+    "city": "Trieste",
+    "position": {
+      "lat": 45.6495,
+      "lng": 13.7768
+    },
+    "address": "Via del Porto 67",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 31,
+    "name": "Beauty Center Brescia",
+    "city": "Brescia",
+    "position": {
+      "lat": 45.5416,
+      "lng": 10.2118
+    },
+    "address": "Via Mazzini 89",
+    "type": "beauty_center",
+    "available": true
+  },
+  {
+    "id": 32,
+    "name": "Farmacia Mare Taranto",
+    "city": "Taranto",
+    "position": {
+      "lat": 40.4838,
+      "lng": 17.2348
+    },
+    "address": "Via Garibaldi 123",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 33,
+    "name": "Profumeria Textile",
+    "city": "Prato",
+    "position": {
+      "lat": 43.8777,
+      "lng": 11.1025
+    },
+    "address": "Via Ricasoli 45",
+    "type": "profumeria",
+    "available": true
+  },
+  {
+    "id": 34,
+    "name": "Farmacia Parma",
+    "city": "Parma",
+    "position": {
+      "lat": 44.8015,
+      "lng": 10.3279
+    },
+    "address": "Via Farini 67",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 35,
+    "name": "Cosmesi Motors",
+    "city": "Modena",
+    "position": {
+      "lat": 44.6473,
+      "lng": 10.9252
+    },
+    "address": "Via Emilia 89",
+    "type": "cosmetica",
+    "available": true
+  },
+  {
+    "id": 36,
+    "name": "Farmacia Calabria",
+    "city": "Reggio Calabria",
+    "position": {
+      "lat": 38.1113,
+      "lng": 15.6619
+    },
+    "address": "Corso Garibaldi 123",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 37,
+    "name": "Profumeria Vannucci",
+    "city": "Perugia",
+    "position": {
+      "lat": 43.1107,
+      "lng": 12.3908
+    },
+    "address": "Corso Vannucci 45",
+    "type": "profumeria",
+    "available": true
+  },
+  {
+    "id": 38,
+    "name": "Farmacia Porto Livorno",
+    "city": "Livorno",
+    "position": {
+      "lat": 43.5484,
+      "lng": 10.3107
+    },
+    "address": "Via Grande 67",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 39,
+    "name": "Beauty Mosaici",
+    "city": "Ravenna",
+    "position": {
+      "lat": 44.4184,
+      "lng": 12.2035
+    },
+    "address": "Via Cavour 89",
+    "type": "beauty_center",
+    "available": true
+  },
+  {
+    "id": 40,
+    "name": "Farmacia Sardegna",
+    "city": "Cagliari",
+    "position": {
+      "lat": 39.2238,
+      "lng": 9.1217
+    },
+    "address": "Via Roma 123",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 41,
+    "name": "Profumeria Puglia",
+    "city": "Foggia",
+    "position": {
+      "lat": 41.4621,
+      "lng": 15.5444
+    },
+    "address": "Via Arpi 45",
+    "type": "profumeria",
+    "available": true
+  },
+  {
+    "id": 42,
+    "name": "Cosmesi Beach",
+    "city": "Rimini",
+    "position": {
+      "lat": 44.0678,
+      "lng": 12.5695
+    },
+    "address": "Via Flaminia 67",
+    "type": "cosmetica",
+    "available": true
+  },
+  {
+    "id": 43,
+    "name": "Farmacia Costa",
+    "city": "Salerno",
+    "position": {
+      "lat": 40.6824,
+      "lng": 14.7681
+    },
+    "address": "Corso Vittorio 89",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 44,
+    "name": "Profumeria Renaissance",
+    "city": "Ferrara",
+    "position": {
+      "lat": 44.8381,
+      "lng": 11.6198
+    },
+    "address": "Via Mazzini 123",
+    "type": "profumeria",
+    "available": true
+  },
+  {
+    "id": 45,
+    "name": "Farmacia Nord Sassari",
+    "city": "Sassari",
+    "position": {
+      "lat": 40.7259,
+      "lng": 8.5594
+    },
+    "address": "Via Roma 45",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 46,
+    "name": "Beauty F1 Monza",
+    "city": "Monza",
+    "position": {
+      "lat": 45.5845,
+      "lng": 9.2744
+    },
+    "address": "Via Bergamo 67",
+    "type": "beauty_center",
+    "available": true
+  },
+  {
+    "id": 47,
+    "name": "Farmacia Acciaio",
+    "city": "Terni",
+    "position": {
+      "lat": 42.5633,
+      "lng": 12.6408
+    },
+    "address": "Corso Tacito 89",
+    "type": "farmacia",
+    "available": true
+  },
+  {
+    "id": 48,
+    "name": "Profumeria Piemonte",
+    "city": "Novara",
+    "position": {
+      "lat": 45.4469,
+      "lng": 8.6226
+    },
+    "address": "Via Fratelli Rosselli 123",
+    "type": "profumeria",
+    "available": true
+  },
+  {
+    "id": 49,
+    "name": "Cosmesi Emilia",
+    "city": "Piacenza",
+    "position": {
+      "lat": 45.0526,
+      "lng": 9.6937
+    },
+    "address": "Via Emilia 45",
+    "type": "cosmetica",
+    "available": true
+  },
+  {
+    "id": 50,
+    "name": "Farmacia Porto Ancona",
+    "city": "Ancona",
+    "position": {
+      "lat": 43.6158,
+      "lng": 13.5189
+    },
+    "address": "Corso Garibaldi 67",
+    "type": "farmacia",
+    "available": false
+  }
+]
