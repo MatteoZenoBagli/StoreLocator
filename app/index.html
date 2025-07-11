@@ -43,13 +43,9 @@
             </div>
           </div>
 
-          <div class="controls">
-            <button onclick="centerOnBologna()">Center on Bologna</button>
-            <button onclick="showAllStores()">Show all stores</button>
-            <button onclick="showStoresWithProducts()">
-              Show stores with products
-            </button>
-            <button onclick="showEmptyStores()">Show empty stores</button>
+          <div id="infoPanel" class="info-panel">
+            Select a product to view stock in stores or select store to view
+            product stock.
           </div>
 
           <div class="legend">
@@ -67,17 +63,21 @@
             </button>
           </div>
 
-          <div id="stats" class="stats">
-            <!-- Stats -->
-          </div>
-
           <div class="map-container">
             <div id="map"></div>
           </div>
 
-          <div id="infoPanel" class="info-panel">
-            Select a product to view stock in stores or select store to view
-            product stock.
+          <div class="controls">
+            <button onclick="centerOnBologna()">Center on Bologna</button>
+            <button onclick="showAllStores()">Show all stores</button>
+            <button onclick="showStoresWithProducts()">
+              Show stores with products
+            </button>
+            <button onclick="showEmptyStores()">Show empty stores</button>
+          </div>
+
+          <div id="stats" class="stats">
+            <!-- Stats -->
           </div>
         </div>
       </div>
